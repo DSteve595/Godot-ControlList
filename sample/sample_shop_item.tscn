@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfdcrey8yx6sv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7s457"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.3137255, 0.3137255, 0.3137255, 0.41568628)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="GDScript" id="GDScript_7s457"]
+script/source = "extends PanelContainer
+
+signal trade_pressed()
+
+var item: SampleShopItem
+var sell_mode := false
+
+func _ready() -> void:
+	$%NameLabel.text = item.name
+	$%IconLabel.text = item.icon
+	$%PriceLabel.text = \"🪙 %s\" % item.price
+	$%TradeButton.pressed.connect(trade_pressed.emit)
+	if sell_mode:
+		$%TradeButton.text = \"Sell\"
+	else:
+		$%TradeButton.text = \"Buy\"	
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_wq5dw"]
+font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_7s457"]
+font_size = 24
+
+[node name="SampleShopItem" type="PanelContainer"]
+custom_minimum_size = Vector2(140, 0)
+offset_right = 146.0
+offset_bottom = 178.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7s457")
+script = SubResource("GDScript_7s457")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="IconLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "🏠"
+label_settings = SubResource("LabelSettings_wq5dw")
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Item name"
+label_settings = SubResource("LabelSettings_7s457")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TradeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Buy"
+
+[node name="PriceLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "🪙 100"
+horizontal_alignment = 2

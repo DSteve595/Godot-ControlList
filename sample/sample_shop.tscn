@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=3 uid="uid://3rrloxlca02m"]
+
+[ext_resource type="Script" uid="uid://3x303npyr7db" path="res://addons/control-list/control_list.gd" id="1_6g0o2"]
+[ext_resource type="Script" uid="uid://chgrwqep2kdlj" path="res://sample_shop_item.gd" id="1_av6wn"]
+[ext_resource type="Script" uid="uid://b5eyq28nio8rk" path="res://sample_shop.gd" id="1_mq3rd"]
+
+[sub_resource type="Resource" id="Resource_mq3rd"]
+script = ExtResource("1_av6wn")
+id = "fish"
+name = "Fish"
+icon = "🐟"
+price = 11
+metadata/_custom_type_script = "uid://chgrwqep2kdlj"
+
+[sub_resource type="Resource" id="Resource_de4jo"]
+script = ExtResource("1_av6wn")
+id = "top_hat"
+name = "Top Hat"
+icon = "🎩"
+price = 25
+metadata/_custom_type_script = "uid://chgrwqep2kdlj"
+
+[sub_resource type="Resource" id="Resource_cc3fa"]
+script = ExtResource("1_av6wn")
+id = "broom"
+name = "Broom"
+icon = "🧹"
+price = 4
+metadata/_custom_type_script = "uid://chgrwqep2kdlj"
+
+[sub_resource type="Resource" id="Resource_6fg1c"]
+script = ExtResource("1_av6wn")
+id = "gift"
+name = "Mystery Gift"
+icon = "🎁"
+price = 9999
+metadata/_custom_type_script = "uid://chgrwqep2kdlj"
+
+[sub_resource type="Resource" id="Resource_alufh"]
+script = ExtResource("1_av6wn")
+id = "ring"
+name = "Ring"
+icon = "💍"
+price = 499
+metadata/_custom_type_script = "uid://chgrwqep2kdlj"
+
+[sub_resource type="Resource" id="Resource_qvvcc"]
+script = ExtResource("1_av6wn")
+id = "glasses"
+name = "Glasses"
+icon = "👓"
+price = 50
+metadata/_custom_type_script = "uid://chgrwqep2kdlj"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5d1c"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.124082975, 0.124082975, 0.1240829, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_6g0o2"]
+font_size = 32
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+script = ExtResource("1_mq3rd")
+player_inventory = Array[ExtResource("1_av6wn")]([SubResource("Resource_mq3rd"), SubResource("Resource_de4jo"), SubResource("Resource_cc3fa")])
+shop_inventory = Array[ExtResource("1_av6wn")]([SubResource("Resource_6fg1c"), SubResource("Resource_alufh"), SubResource("Resource_qvvcc")])
+
+[node name="PlayerPanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_c5d1c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerPanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerPanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayerPanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Player"
+label_settings = SubResource("LabelSettings_6g0o2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerPanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 16
+
+[node name="PlayerSortNameButton" type="Button" parent="PlayerPanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sort by name"
+
+[node name="PlayerSortPriceButton" type="Button" parent="PlayerPanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sort by price"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="HFlowContainer" type="HFlowContainer" parent="PlayerPanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayerInventoryControlList" type="Node" parent="PlayerPanelContainer/VBoxContainer/ScrollContainer/HFlowContainer"]
+unique_name_in_owner = true
+script = ExtResource("1_6g0o2")
+metadata/_custom_type_script = "uid://3x303npyr7db"
+
+[node name="PlayerSellAllButton" type="Button" parent="PlayerPanelContainer/VBoxContainer/ScrollContainer/HFlowContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Sell all"
+
+[node name="ShopPanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_c5d1c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopPanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Shop"
+label_settings = SubResource("LabelSettings_6g0o2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 16
+
+[node name="ShopSortNameButton" type="Button" parent="ShopPanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sort by name"
+
+[node name="ShopSortPriceButton" type="Button" parent="ShopPanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sort by price"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 4
+
+[node name="HFlowContainer" type="HFlowContainer" parent="ShopPanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShopInventoryControlList" type="Node" parent="ShopPanelContainer/VBoxContainer/ScrollContainer/HFlowContainer"]
+unique_name_in_owner = true
+script = ExtResource("1_6g0o2")
+metadata/_custom_type_script = "uid://3x303npyr7db"
+
+[node name="ShopBuyAllButton" type="Button" parent="ShopPanelContainer/VBoxContainer/ScrollContainer/HFlowContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Buy all"
