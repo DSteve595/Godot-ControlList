@@ -85,13 +85,7 @@ func set_item_key(key_func: Callable) -> void:
 ## - immediate: Whether to update the list of Controls now, or wait until
 ##   this ControlList's next `_process()`.
 func update_list(new_list: Array, immediate: bool = false) -> void:
-	__list = new_list.duplicate()
-	__set_first_list = true
-	if immediate:
-		assert(is_node_ready())
-		__update()
-	else:
-		__dirty = true
+	pass
 
 func _ready() -> void:
 	var parent := get_parent()
