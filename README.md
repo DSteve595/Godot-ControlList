@@ -24,13 +24,15 @@ This is similar to Qt's ListView and Android's RecyclerView+DiffUtil.
 
 There are two options:
 
-1. ~From the Asset Library~
+### ~From the Asset Library~
 
-   Soon! Waiting for their approval.
+Soon! Waiting for their approval.
 
-3. From a release
-    - Download the control-list.zip from the GitHub Releases of this repo.
-    - Unzip into your project so it lands at: addons/control-list
+### From a release
+
+Download control-list.zip from [the latest GitHub release](https://github.com/DSteve595/Godot-ControlList/releases/latest). 
+
+Unzip it into your project.
 
 ## Quick start
 
