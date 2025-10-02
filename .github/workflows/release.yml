@@ -1,0 +1,41 @@
+name: Release addon
+
+on:
+  push:
+    tags:
+      - '[0-9].*'
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build addon zip
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p package/addons
+          cp -R control-list package/addons/control-list
+          cp LICENSE package/addons/control-list/
+          cd package
+          zip -r control-list.zip addons
+
+      - name: Create GitHub Release and upload addon zip
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: package/control-list.zip
+          generate_release_notes: true
+
+      # Upload artifact for non-tag runs
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: control-list.zip
+          path: package/control-list.zip
+          if-no-files-found: error
