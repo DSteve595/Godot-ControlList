@@ -24,9 +24,11 @@ This is similar to Qt's ListView and Android's RecyclerView+DiffUtil.
 
 There are two options:
 
-1. From the Asset Library
+1. ~From the Asset Library~
 
-2. From a release
+   Soon! Waiting for their approval.
+
+3. From a release
     - Download the control-list.zip from the GitHub Releases of this repo.
     - Unzip into your project so it lands at: addons/control-list
 
