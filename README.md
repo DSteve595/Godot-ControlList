@@ -24,9 +24,9 @@ This is similar to Qt's ListView and Android's RecyclerView+DiffUtil.
 
 There are two options:
 
-### ~From the Asset Library~
+### From the Asset Library
 
-Soon! Waiting for their approval.
+Search for "Control List" by D_Steve595 and install it.
 
 ### From a release
 
