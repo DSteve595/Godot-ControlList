@@ -104,6 +104,9 @@ func _process(_delta: float) -> void:
 	if __dirty:
 		__update()
 
+func _enter_tree() -> void:
+	assert(get_parent() is Control)
+
 func __update() -> void:
 	__position_in_parent = get_index()
 	var edits := ControlListDiff.myers_diff(__last_list, __list, __key_func)
