@@ -124,3 +124,4 @@ export GODOT_BINARY=/Applications/Godot.app/Contents/MacOS/Godot
     if it makes as much sense in Godot.
 - Maybe: Make position known to items
 - Maybe: Background thread diffing
+- Benchmarks
