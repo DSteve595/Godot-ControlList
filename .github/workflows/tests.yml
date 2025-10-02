@@ -1,0 +1,17 @@
+name: GdUnit4 - Test Runner Action
+
+on: [pull_request]
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run GdUnit4 Tests
+        uses: MikeSchulze/gdUnit4-action@v1.1.6
+        with:
+          godot-version: '4.4.1'
+          project_dir: './tests/'
+          paths: 'res://test'
